@@ -25,20 +25,20 @@ import Category_Edit from './components/admins/pages/categories/edit.vue';
 import Product from './components/admins/pages/products/index.vue';
 import Product_Create from './components/admins/pages/products/create.vue';
 import Product_Edit from './components/admins/pages/products/edit.vue';
+//Slider
+import Slider from './components/admins/pages/sliders/index.vue';
+import Slider_Create from './components/admins/pages/sliders/create.vue';
+import Slider_Edit from './components/admins/pages/sliders/edit.vue';
+//Banner
+import Banner from './components/admins/pages/banners/index.vue';
+import Banner_Create from './components/admins/pages/banners/create.vue';
+import Banner_Edit from './components/admins/pages/banners/edit.vue';
 
-//Frontend
-import Dashboard_Frontend from './components/frontend/Dashboard.vue';
-import Home_Frontend from './components/frontend/pages/Home.vue';
-import Shop from './components/frontend/pages/Shop.vue';
-import Blog from './components/frontend/pages/Blog.vue';
-import About from './components/frontend/pages/About.vue';
-import Contact from './components/frontend/pages/Contact.vue';
-import Cart from './components/frontend/pages/Cart.vue';
-import ProductDetail from './components/frontend/pages/ProductDetail.vue';
 
 import axios from 'axios';
 const router = new VueRouter({  
     mode: 'history',
+    base: '/be',
     routes: [
         {
             path: '*',
@@ -56,8 +56,7 @@ const router = new VueRouter({
         },
         //Admin
         {
-            path: '/admin-manager',
-            name: 'dashboard',
+            path: '/',
             component: Dashboard,
             beforeEnter: (to, form, next ) =>{
                 axios.get('/api/authenticated').then(() => {
@@ -70,6 +69,7 @@ const router = new VueRouter({
                  //Home
                  {
                     path: '/',
+                    name: 'dashboard',
                     component: Home,
                 },
                 //Profile
@@ -85,7 +85,7 @@ const router = new VueRouter({
                 },
                 //User
                 {
-                    path: '/user',
+                    path: 'user',
                     name: 'user',
                     component: User,
                 },
@@ -132,51 +132,42 @@ const router = new VueRouter({
                     path: 'product/edit/:id',
                     name: 'product-edit',
                     component: Product_Edit
-                },      
+                },  
+                
+                  //Slider
+                 {
+                    path: 'slider',
+                    name: 'slider',
+                    component: Slider,
+                },
+                {
+                    path: 'slider/create',
+                    name: 'slider-create',
+                    component: Slider_Create,
+                },
+                {
+                    path: 'slider/edit/:id',
+                    name: 'slider-edit',
+                    component: Slider_Edit
+                },    
+                //Banner
+                {
+                    path: 'banner',
+                    name: 'banner',
+                    component: Banner,
+                },
+                {
+                    path: 'banner/create',
+                    name: 'banner-create',
+                    component: Banner_Create,
+                },
+                {
+                    path: 'banner/edit/:id',
+                    name: 'banner-edit',
+                    component: Banner_Edit
+                },   
             ]
         },
-        //User
-        {
-            path: '/',
-            component: Dashboard_Frontend,
-            children: [
-                {
-                    path: '/',
-                    name: 'home',
-                    component: Home_Frontend
-                },
-                {
-                    path: '/shop',
-                    name: 'shop',
-                    component: Shop
-                },
-                {
-                    path: '/blog',
-                    name: 'blog',
-                    component: Blog
-                },  
-                {
-                    path: '/about',
-                    name: 'about',
-                    component: About
-                },
-                {
-                    path: '/contact',
-                    name: 'contact',
-                    component: Contact
-                },  
-                {
-                    path: '/cart',
-                    name: 'cart',
-                    component: Cart
-                }, 
-                {
-                    path: '/product-detail',
-                    name: 'product-detail',
-                    component: ProductDetail
-                },  
-            ]
-        }
     ]
 })
 

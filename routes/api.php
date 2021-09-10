@@ -41,11 +41,24 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::resource('product', ProductController::class);
         Route::put('change-status-product/{product}','ProductController@changeStatus');
 
+         //slider
+         Route::resource('slider', SliderController::class);
+         Route::put('change-status-slider/{slider}','SliderController@changeStatus');
 
+          //slider
+          Route::resource('banner', BannerController::class);
+          Route::put('change-status-banner/{banner}','BannerController@changeStatus');
+ 
         //profile
         Route::get('profile','ProfileController@index');
         Route::put('profile/{profile}', 'ProfileController@update');
         Route::put('profile/change-password/{user}','ProfileController@changePassword');
     });
+});
+
+Route::namespace('App\Http\Controllers\Frontend')->group(function(){
+    Route::get('fresh-slider','SliderController@index');
+    Route::get('fresh-category','CategoryController@index');
+    Route::get('fresh-banner','BannerController@index');
 });
 

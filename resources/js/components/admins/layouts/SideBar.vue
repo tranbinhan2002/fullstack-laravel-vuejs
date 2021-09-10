@@ -50,6 +50,18 @@
                 </router-link>
               </li>
                <li class="nav-item">
+                <router-link :to="{ name: 'slider' }" class="nav-link">
+                 <i class="fas fa-sliders-h nav-icon"></i>
+                  <p>Slider</p>
+                </router-link>
+              </li>
+               <li class="nav-item">
+                <router-link :to="{ name: 'banner' }" class="nav-link">
+                 <i class="fas fa-sliders-h nav-icon"></i>
+                  <p>Banner</p>
+                </router-link>
+              </li>
+               <li class="nav-item">
                 <router-link :to="{ name: 'user' }" class="nav-link">
                   <i class="fas fa-users nav-icon"></i>
                   <p>User</p>

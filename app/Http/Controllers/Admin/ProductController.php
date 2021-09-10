@@ -39,7 +39,7 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Product $product)
+    public function store(Request $request)
     {
         $this->validate($request, [
             'name' => 'required',
@@ -53,7 +53,7 @@ class ProductController extends Controller
             $image = Storage::url($request->file('image')->storeAs('public/product', $fileName));
         }
 
-        $product = Product::create([
+        $product= Product::create([
             'name' => $request->name,
             'slug' => Str::slug($request->name),
             'category_id' => $request->category_id,

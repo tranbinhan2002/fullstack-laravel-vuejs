@@ -275,7 +275,7 @@ export default {
       }
     },
     getUser(page = 1) {
-      this.callApi("get", `api/user?page=${page}&search=${this.search}`).then((res) => {
+      this.callApi("get", `/api/user?page=${page}&search=${this.search}`).then((res) => {
         this.users = res.data;
       });
     },
