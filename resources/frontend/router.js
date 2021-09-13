@@ -15,8 +15,10 @@ import Blog from './components/frontend/pages/Blog.vue';
 import About from './components/frontend/pages/About.vue';
 import Contact from './components/frontend/pages/Contact.vue';
 import Cart from './components/frontend/pages/Cart.vue';
-import ProductDetail from './components/frontend/pages/ProductDetail.vue';
-
+import ProductDetail from './components/frontend/pages/products/ProductDetail.vue';
+import Profile from './components/frontend/pages/profile/index.vue';
+import Profile_Edit from './components/frontend/pages/profile/edit.vue'; 
+import axios from 'axios';
 const router = new VueRouter({  
     mode: 'history',
     routes: [
@@ -37,12 +39,30 @@ const router = new VueRouter({
         //User
         {
             path: '/',
+            name: 'home',
             component: Dashboard_Frontend,
             children: [
                 {
                     path: '/',
                     name: 'home',
                     component: Home_Frontend
+                },
+                {
+                    path: '/profile',
+                    name: 'profile',
+                    component: Profile,
+                    beforeEnter: (to, form, next ) =>{
+                        axios.get('/api/authenticated').then(() => {
+                            next();
+                        }).catch(() => {
+                            return next({name: 'login'});
+                        });
+                    },
+                },
+                {
+                    path: 'profile/edit/:id',
+                    name: 'profile-edit',
+                    component: Profile_Edit,
                 },
                 {
                     path: '/shop',
@@ -73,7 +93,7 @@ const router = new VueRouter({
                     path: '/product-detail',
                     name: 'product-detail',
                     component: ProductDetail
-                },  
+                }, 
             ]
         }
     ]

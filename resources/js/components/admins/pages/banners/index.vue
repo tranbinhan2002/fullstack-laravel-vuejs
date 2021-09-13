@@ -22,7 +22,7 @@
               <input
                 type="search"
                 v-model="search"
-                @keyup="getPanners()"
+                @keyup="getBanners()"
                 id="form1"
                 class="form-control"
                 placeholder="Search"

@@ -41,13 +41,7 @@ export default {
       this.callApi('post','/api/login',this.form).then(res => {
         console.log(res);
         if(res.status == 200){
-          if(res.data.role_user == 'admin'){
-             this.$router.push({name: 'dashboard'})
-          }
-          else{
              this.$router.push({name: 'home'})
-          }
-         
         }
         else
         {

@@ -38,25 +38,25 @@ import Banner_Edit from './components/admins/pages/banners/edit.vue';
 import axios from 'axios';
 const router = new VueRouter({  
     mode: 'history',
-    base: '/be',
+    // base: '/be',
     routes: [
         {
             path: '*',
             component: NotFound
         },
         {
-            path: '/login',
+            path: '/be/login',
             name: 'login',
             component: Login
         },
         {
-            path: '/register',
+            path: '/be/register',
             name: 'register',
             component: Register
         },
         //Admin
         {
-            path: '/',
+            path: '/be',
             component: Dashboard,
             beforeEnter: (to, form, next ) =>{
                 axios.get('/api/authenticated').then(() => {
